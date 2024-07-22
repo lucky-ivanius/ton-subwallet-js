@@ -41,9 +41,6 @@ const prepare = async () => {
   const jettonWalletAddress = await jettonMinter.getJettonWalletAddress(
     hotWalletAddress
   );
-  console.log(
-    "My jetton wallet for" + jettonWalletAddress.toString(true, true, true)
-  );
   const jettonWallet = new TonWeb.token.jetton.JettonWallet(tonweb.provider, {
     address: jettonWalletAddress,
   });
@@ -88,10 +85,10 @@ const doWithdraw = async (withdrawalRequest) => {
   });
 
   const ret = await transfer.send(); // send transfer request to network
-  console.log(
-    ` => ${seqno} ${withdrawalRequest.withdrawId} ${withdrawalRequest.withdrawAmount} sent`
-  );
+
+  console.log(ret);
+
   return true;
 };
 
-export { doWithdraw, wallet };
+export { prepare, doWithdraw, wallet, USDT_JETTONS_INFO };
